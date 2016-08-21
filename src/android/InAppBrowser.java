@@ -844,8 +844,8 @@ public class InAppBrowser extends CordovaPlugin {
                 } catch (android.content.ActivityNotFoundException e) {
                     LOG.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
                 }
-            } else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:")) {
-                try {
+            } else if (url.startsWith("geo:") || url.startsWith("taobao:")|| url.startsWith("weixin:")|| url.startsWith("alipay:") || url.startsWith("a031:")  || url.startsWith("baidumap:")  || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:")) {
+                try {   
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
                     cordova.getActivity().startActivity(intent);
