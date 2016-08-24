@@ -835,7 +835,9 @@ public class InAppBrowser extends CordovaPlugin {
          */
         @Override
         public boolean shouldOverrideUrlLoading(WebView webView, String url) {
-            if (url.startsWith(WebView.SCHEME_TEL)) {
+            if(url.equals("about:blank")){
+                closeDialog();
+            }else if (url.startsWith(WebView.SCHEME_TEL)) {
                 try {
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse(url));
@@ -913,18 +915,14 @@ public class InAppBrowser extends CordovaPlugin {
             if (!newloc.equals(edittext.getText().toString())) {
                 edittext.setText(newloc);
             }
-            if(url.equals("about:blank")){
-                closeDialog();
-            }else{
-                try {
-                    JSONObject obj = new JSONObject();
-                    obj.put("type", LOAD_START_EVENT);
-                    obj.put("url", newloc);
-                    sendUpdate(obj, true);
-                } catch (JSONException ex) {
-                    LOG.e(LOG_TAG, "URI passed in has caused a JSON error.");
-                }
-            } 
+            try {
+                JSONObject obj = new JSONObject();
+                obj.put("type", LOAD_START_EVENT);
+                obj.put("url", newloc);
+                sendUpdate(obj, true);
+            } catch (JSONException ex) {
+                LOG.e(LOG_TAG, "URI passed in has caused a JSON error.");
+            }
         }
 
 
