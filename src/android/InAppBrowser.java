@@ -902,8 +902,6 @@ public class InAppBrowser extends CordovaPlugin {
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
                 newloc = url;
-            }else if(url.equals("about:blank")){
-                closeDialog();
             }else if{
                 // Assume that everything is HTTP at this point, because if we don't specify,
                 // it really should be.  Complain loudly about this!!!
@@ -915,15 +913,18 @@ public class InAppBrowser extends CordovaPlugin {
             if (!newloc.equals(edittext.getText().toString())) {
                 edittext.setText(newloc);
             }
-
-            try {
-                JSONObject obj = new JSONObject();
-                obj.put("type", LOAD_START_EVENT);
-                obj.put("url", newloc);
-                sendUpdate(obj, true);
-            } catch (JSONException ex) {
-                LOG.e(LOG_TAG, "URI passed in has caused a JSON error.");
-            }
+            if(url.equals("about:blank")){
+                closeDialog();
+            }else if{
+                try {
+                    JSONObject obj = new JSONObject();
+                    obj.put("type", LOAD_START_EVENT);
+                    obj.put("url", newloc);
+                    sendUpdate(obj, true);
+                } catch (JSONException ex) {
+                    LOG.e(LOG_TAG, "URI passed in has caused a JSON error.");
+                }
+            } 
         }
 
 
