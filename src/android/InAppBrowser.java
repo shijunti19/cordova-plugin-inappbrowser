@@ -902,7 +902,7 @@ public class InAppBrowser extends CordovaPlugin {
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
                 newloc = url;
-            }else if{
+            }else{
                 // Assume that everything is HTTP at this point, because if we don't specify,
                 // it really should be.  Complain loudly about this!!!
                 LOG.e(LOG_TAG, "Possible Uncaught/Unknown URI");
@@ -915,7 +915,7 @@ public class InAppBrowser extends CordovaPlugin {
             }
             if(url.equals("about:blank")){
                 closeDialog();
-            }else if{
+            }else{
                 try {
                     JSONObject obj = new JSONObject();
                     obj.put("type", LOAD_START_EVENT);
