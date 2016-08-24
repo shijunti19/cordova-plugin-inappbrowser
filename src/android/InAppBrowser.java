@@ -902,7 +902,7 @@ public class InAppBrowser extends CordovaPlugin {
             String newloc = "";
             if (url.startsWith("http:") || url.startsWith("https:") || url.startsWith("file:")) {
                 newloc = url;
-            }else if (url.equals('about:blank')){
+            }else if(url.equals("about:blank")){
                 closeDialog();
                 return false;
             }else{
