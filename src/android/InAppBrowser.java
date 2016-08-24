@@ -904,7 +904,6 @@ public class InAppBrowser extends CordovaPlugin {
                 newloc = url;
             }else if(url.equals("about:blank")){
                 closeDialog();
-                return false;
             }else{
                 // Assume that everything is HTTP at this point, because if we don't specify,
                 // it really should be.  Complain loudly about this!!!
@@ -915,7 +914,7 @@ public class InAppBrowser extends CordovaPlugin {
             // Update the UI if we haven't already
             if (!newloc.equals(edittext.getText().toString())) {
                 edittext.setText(newloc);
-             }
+            }
 
             try {
                 JSONObject obj = new JSONObject();
